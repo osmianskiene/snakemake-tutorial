@@ -1,0 +1,6 @@
+/.snakemake/
+/calls/
+/data/
+/mapped_reads/
+/plots/
+/sorted_reads/
