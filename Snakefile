@@ -3,6 +3,21 @@ configfile: "config.yaml"
 rule all:
     input:
         "plots/quals.svg"
+rule download_data:
+    output:
+        "snakemake-tutorial-data-v5.4.5.tar.gz"
+    shell:
+        "curl -L -o {output} https://github.com/snakemake/snakemake-tutorial-data/archive/v5.4.5.tar.gz"
+rule extract_data:
+    input:
+        "snakemake-tutorial-data-v5.4.5.tar.gz"
+    output:
+        "data/genome.fa"
+    shell:
+        """
+        mkdir -p data
+        tar -xzf {input} -C data --strip-components 2
+        """
 rule bwa_map:
     input:
         "data/genome.fa",
